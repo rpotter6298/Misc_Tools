@@ -4,6 +4,8 @@ from pathlib import Path
 from multiprocessing import Process, Queue
 from playsound import playsound
 
+sound_file = Path("C:/Ryan/misc_tools/webcam_monitor/ding.mp3")
+
 
 def play_sound(sound_file, request_queue):
     # Check if the sound file exists
@@ -23,7 +25,7 @@ def play_sound(sound_file, request_queue):
                 time.monotonic() - last_played_time > 10
             ):  # Play sound only if elapsed time is greater than 10 seconds
                 # Play the requested sound file
-                playsound(sound_file)
+                playsound(str(sound_file))
                 # Update the last played time
                 last_played_time = time.monotonic()
 
@@ -59,7 +61,7 @@ if __name__ == "__main__":
     sound_request_queue = Queue()
 
     # Start the sound playing process as a daemon
-    sound_file = Path("ding.mp3")
+    # sound_file = Path("ding.mp3")
 
     sound_process = Process(target=play_sound, args=(sound_file, sound_request_queue))
     sound_process.daemon = True
