@@ -1,0 +1,1 @@
+Very simple...just put a csv in this folder (remove any header information) and then run the run file
